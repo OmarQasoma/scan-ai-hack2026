@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@drawable/bg_login_screen">
+    android:background="@drawable/bg_login_screen"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,14 +12,29 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <ImageView
+            android:id="@+id/imgHomeLogo"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Scan AI Logo"
+            android:scaleType="fitCenter"
+            android:src="@drawable/scanai_logo" />
 
         <LinearLayout
             android:id="@+id/layoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingVertical="8dp">
 
             <TextView
                 android:id="@+id/tvUserName"
@@ -72,9 +87,9 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="12dp"
+                        android:contentDescription="Create order"
                         android:src="@android:drawable/ic_menu_manage"
-                        android:tint="#FFFFFF"
-                        android:contentDescription="Create order" />
+                        android:tint="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -110,9 +125,9 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="12dp"
+                        android:contentDescription="My orders"
                         android:src="@android:drawable/ic_menu_agenda"
-                        android:tint="#FFFFFF"
-                        android:contentDescription="My orders" />
+                        android:tint="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -148,9 +163,9 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="12dp"
+                        android:contentDescription="Beredskap"
                         android:src="@android:drawable/ic_dialog_info"
-                        android:tint="#FFD54F"
-                        android:contentDescription="Beredskap" />
+                        android:tint="#FFD54F" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -186,9 +201,9 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="12dp"
+                        android:contentDescription="Standards"
                         android:src="@android:drawable/ic_menu_edit"
-                        android:tint="#FFFFFF"
-                        android:contentDescription="Standards" />
+                        android:tint="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -226,9 +241,9 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:layout_marginEnd="12dp"
+                    android:contentDescription="Emergency"
                     android:src="@android:drawable/stat_notify_error"
-                    android:tint="#FFFFFF"
-                    android:contentDescription="Emergency" />
+                    android:tint="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"

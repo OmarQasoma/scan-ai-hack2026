@@ -19,5 +19,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
 
+        binding.cardCreateOrder.setOnClickListener {
+            startActivity(Intent(this, CreateOrderActivity::class.java))
+        }
     }
 }

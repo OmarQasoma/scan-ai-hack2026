@@ -14,6 +14,10 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
         binding.btnLogout.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -22,11 +26,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnSettings.setOnClickListener {
-            // مؤقتًا لا يوجد Settings screen بعد
-        }
-
-        binding.btnBack.setOnClickListener {
-            finish()
+            // لاحقًا نربطها بشاشة Settings
         }
     }
 }

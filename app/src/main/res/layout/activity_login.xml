@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_width="700dp"
+        android:layout_height="199dp"
         android:layout_marginBottom="36dp"
         android:adjustViewBounds="true"
         android:contentDescription="Scan AI Logo"
