@@ -1,6 +1,5 @@
 package com.scanai.scanai
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -24,7 +23,9 @@ class CreateOrderActivity : AppCompatActivity() {
             )
 
             if (intentResult != null && intentResult.contents != null) {
-                binding.etSvNumber.setText(intentResult.contents)
+                val scanned = intentResult.contents.trim()
+                val onlyNumber = scanned.removePrefix("SV")
+                binding.etSvNumber.setText(onlyNumber)
             }
         }
 
@@ -39,7 +40,7 @@ class CreateOrderActivity : AppCompatActivity() {
 
         binding.btnScan.setOnClickListener {
             val integrator = IntentIntegrator(this)
-            integrator.setPrompt("Scan SV QR")
+            integrator.setPrompt("Scan machine QR")
             integrator.setBeepEnabled(true)
             integrator.setOrientationLocked(true)
             qrScannerLauncher.launch(integrator.createScanIntent())
@@ -47,9 +48,10 @@ class CreateOrderActivity : AppCompatActivity() {
 
         binding.etSvNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val sv = s.toString().trim()
-                if (sv.length >= 6) {
-                    fetchMachineData(sv)
+                val number = s.toString().trim()
+
+                if (number.length >= 6) {
+                    fetchMachineData(number)
                 } else {
                     clearMachineFields()
                 }
@@ -64,9 +66,9 @@ class CreateOrderActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchMachineData(sv: String) {
+    private fun fetchMachineData(number: String) {
         db.collection("machines")
-            .document(sv)
+            .document(number)
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.exists()) {
@@ -90,7 +92,7 @@ class CreateOrderActivity : AppCompatActivity() {
         val description = binding.etDescription.text.toString().trim()
 
         if (svNumber.isEmpty()) {
-            binding.etSvNumber.error = "Ange SV-nummer"
+            binding.etSvNumber.error = "Ange nummer"
             binding.etSvNumber.requestFocus()
             return
         }
