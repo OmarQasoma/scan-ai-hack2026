@@ -72,15 +72,26 @@ class CreateOrderActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { doc ->
                 if (doc.exists()) {
-                    binding.etByggnad.setText(doc.getString("byggnad") ?: "")
-                    binding.etLine.setText(doc.getString("line") ?: "")
-                    binding.etMachine.setText(doc.getString("machine") ?: "")
+                    val byggnad = doc.get("byggnad")?.toString() ?: ""
+                    val line = doc.get("line")?.toString() ?: ""
+                    val machine = doc.get("machine")?.toString() ?: ""
+
+                    binding.etByggnad.setText(byggnad)
+                    binding.etLine.setText(line)
+                    binding.etMachine.setText(machine)
+
+                    Toast.makeText(this, "Maskininfo hämtad", Toast.LENGTH_SHORT).show()
                 } else {
                     clearMachineFields()
+                    Toast.makeText(this, "Ingen maskin hittades för $number", Toast.LENGTH_SHORT).show()
                 }
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Kunde inte hämta maskindata", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this,
+                    "Kunde inte hämta maskindata: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
@@ -130,6 +141,7 @@ class CreateOrderActivity : AppCompatActivity() {
             "orderType" to orderType,
             "role" to role,
             "stopped" to stopped,
+            "status" to "Skickad till underhåll",
             "timestamp" to System.currentTimeMillis()
         )
 
@@ -139,8 +151,12 @@ class CreateOrderActivity : AppCompatActivity() {
                 Toast.makeText(this, "Order skickad ✔", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Fel vid skick av order", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this,
+                    "Fel vid skick av order: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 

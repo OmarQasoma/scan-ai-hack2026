@@ -22,5 +22,13 @@ class MainActivity : AppCompatActivity() {
         binding.cardCreateOrder.setOnClickListener {
             startActivity(Intent(this, CreateOrderActivity::class.java))
         }
+
+        binding.cardStandards.setOnClickListener {
+            startActivity(Intent(this, StandarderActivity::class.java))
+        }
+
+        binding.cardMyOrders.setOnClickListener {
+            startActivity(Intent(this, MinaOrderActivity::class.java))
+        }
     }
 }
